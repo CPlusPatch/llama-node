@@ -190,7 +190,7 @@ impl From<ModelLoad> for llama_context_params {
             use_mlock: params.use_mlock,
             embedding: params.embedding,
 			rope_freq_base: params.rope_freq_base,
-			rope_freq_scale: params.rope_freq_scale.
+			rope_freq_scale: params.rope_freq_scale,
 			tensor_split: params.tensor_split,
 			n_batch: params.n_batch,
 			n_gqa: params.n_gqa,
