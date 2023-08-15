@@ -131,6 +131,9 @@ pub struct ModelLoad {
     pub use_mlock: bool,
     pub embedding: bool,
     pub use_mmap: bool,
+	pub n_batch: i32,
+	pub n_gqa: i32,
+	pub rms_norm_eps: f32,
     pub lora: Option<LlamaLoraAdaptor>,
 }
 
@@ -151,6 +154,9 @@ impl Default for ModelLoad {
             embedding: false,
             use_mmap: true,
             lora: None,
+			n_batch: 512,
+			n_gqa: 1,
+			rms_norm_eps: 0.000005f32,
         }
     }
 }
@@ -177,6 +183,9 @@ impl From<ModelLoad> for llama_context_params {
             use_mmap: params.use_mmap,
             use_mlock: params.use_mlock,
             embedding: params.embedding,
+			n_batch: params.n_batch,
+			n_gqa: params.n_gqa,
+			rms_norm_eps: params.rms_norm_eps,
             progress_callback: None,
             progress_callback_user_data: std::ptr::null_mut(),
         }
