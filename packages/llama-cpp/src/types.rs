@@ -121,7 +121,10 @@ pub struct ModelLoad {
     pub model_path: String,
     pub n_ctx: i32,
     pub n_gpu_layers: i32,
-    pub seed: i32,
+    pub seed: u32,
+	pub low_vram: bool,
+	pub mul_mat_q: bool,
+	pub main_gpu: i32,
     pub f16_kv: bool,
     pub logits_all: bool,
     pub vocab_only: bool,
@@ -138,6 +141,9 @@ impl Default for ModelLoad {
             n_ctx: 2048,
             n_gpu_layers: 0,
             seed: 0,
+			low_vram: false,
+			mul_mat_q: false,
+			main_gpu: 0,
             f16_kv: true,
             logits_all: false,
             vocab_only: false,
@@ -159,6 +165,9 @@ impl ModelLoad {
 impl From<ModelLoad> for llama_context_params {
     fn from(params: ModelLoad) -> Self {
         llama_context_params {
+			low_vram: params.low_vram,
+			main_gpu: params.main_gpu,
+			mul_mat_q: params.mul_mat_q,
             n_ctx: params.n_ctx,
             n_gpu_layers: params.n_gpu_layers,
             seed: params.seed,
