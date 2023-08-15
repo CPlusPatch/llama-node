@@ -135,6 +135,7 @@ pub struct ModelLoad {
 	pub n_gqa: i32,
 	pub rope_freq_base: f32,
 	pub rope_freq_scale: f32,
+	#[serde(skip)]
 	pub tensor_split: *const f32,
 	pub rms_norm_eps: f32,
     pub lora: Option<LlamaLoraAdaptor>,
